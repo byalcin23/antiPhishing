@@ -5,7 +5,6 @@ body {
 .form-wrap {
   
   align-items: center;
-  border: 1px solid #dbdbdb;
   border-radius: 2px;
 }
 
@@ -25,6 +24,9 @@ body, button, input {
   font-size:14px;
   line-height:18px;
 }
+
+
+
 
 main, article, main, div, section, header, nav, footer {
   border: 0 solid #000000;
