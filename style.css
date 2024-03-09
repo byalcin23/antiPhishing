@@ -118,6 +118,15 @@ main, article, main, div, section, header, nav, footer {
   -webkit-box-direction: normal;
 }
 
+.form2 {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 10px;
+  -moz-box-direction: normal;
+  -webkit-box-direction: normal;
+}
+
+
 .input-box {
   margin:auto 40px 6px;
 }
@@ -334,5 +343,7 @@ input {
     -webkit-box-pack: center;
     -moz-box-pack: center;
   }
+
+
 
 }

